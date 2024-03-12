@@ -1,0 +1,39 @@
+{% extends "index.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="row align-items-center">
+        <!-- <div class="col-md-6 hide-on-small">
+            <img id="image1" src="../static/img/Corners-with-circles333.gif" alt="Image" class="img-fluid">
+        </div> -->
+        <div class="col-md-6">
+            <p id="bio-title">Audio samples</p>
+            <p class="bio-text">...</p>
+        </div>
+        {% for audio_file in audio_files %}
+        <div class="player">
+            <audio class="audio" src="{{ audio_file }}"></audio>
+            <button class="play">Play</button>
+            <button class="pause">Pause</button>
+            <button class="stop">Stop</button>
+            <label for="seek">Position:</label>
+            <input class="seek" type="range" min="0" max="100" value="0">
+        </div>
+        {% endfor %}
+        <div class="volume-control">
+            <label for="volume">Volume:</label>
+            <input class="volume" type="range" min="0" max="1" step="0.01" value="1">
+        </div>
+        <button id="reverbToggle">Toggle Reverb</button>
+
+    <script>
+        var audioFileUrl = "{{ url_for('static', filename='wav/IRs/capricorn-ir-1-101345.mp3') }}";
+    </script>
+    <!-- <script src="../static/js/player.js"></script>
+    <script src="../static/js/rev2.js"></script> -->
+    <script src="../static/js/audio1.js"></script>
+    </div>
+</div>
+{% endblock %}
+
+

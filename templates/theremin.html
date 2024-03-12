@@ -1,0 +1,21 @@
+{% extends "index.html" %}
+
+<!-- {% block title %}
+Home
+{% endblock %} -->
+
+{% block content %}
+<div style="display: grid; grid-template-columns: repeat(3, auto); justify-content: end; align-content: end; gap: 10px; position: absolute; left: 20px; bottom: 20px;">
+    <div></div>
+    <div></div>
+    <button id='increaseDetune'>Detune UP</button>
+    <button id='osc1Button'>1 Oscillator</button>
+    <button id='osc2syncButton'>2 Oscillators</button>
+    <div id="detuneAmount">0 cents</div>
+    <div></div>
+    <div></div>
+    <button id="decreaseDetune">Detune DOWN</button>
+</div>
+<script src="../static/js/ther7.js">
+</script>
+{% endblock %}

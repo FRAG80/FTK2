@@ -1,0 +1,43 @@
+ther5.js:
+good, 2 OSC + detune, X=pitch, Y=nil
+
+ther6.js:
+tried adding reverb, BROKEN
+
+rev1.js:
+basic audio player with reverb?
+
+
+
+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
+
+make empty repo on github
+
+git init
+
+(.gitgnore ready)
+
+git add --all
+
+git commit -m "Your commit message"
+
+git remote add origin https://github.com/FRAG80/FTK1
+
+git push -u origin master
+
+. . .
+
+git status
+
+git add .
+
+git commit -m "message"
+
+git push origin master
+
+
+
+
+
+
+

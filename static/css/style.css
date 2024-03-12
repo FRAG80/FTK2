@@ -1,0 +1,176 @@
+body {
+    background-image: url("../img/DSC00388.JPG");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+header {
+    background: transparent;
+}
+.logo {
+    float: left;
+    height: 50px;
+}
+.hide-on-small {
+    display: none;
+}
+/* .logo {
+    display: block;
+    min-height: 30px;
+    max-height: 50px;
+    width: auto;
+} */
+@media screen and (min-width: 768px) {
+    .hide-on-small {
+        display: block;
+    }
+}
+/* @media (max-width: 992px) {
+    .navbar-nav .dropdown-menu {
+        left: auto;
+        right: 0;
+    }
+} */
+#image1 {
+    position: left-center;
+    max-width: 50vw;
+}
+#navbarNavDropdown {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: rgb(202, 82, 82);
+    text-align: center;
+    text-justify: inter-word;
+    font-size: 20px;
+    font-weight: bold;
+}
+#text2 {
+    font-family: 'Courier New', Courier, monospace;
+    color: white;
+    text-align: center;
+    text-justify: inter-word;
+    font-size: 60px;
+    font-weight: bold;
+    text-shadow: -1px -1px 0 #000,  
+                 1px -1px 0 #000,
+                 -1px 1px 0 #000,
+                 1px 1px 0 #000;
+}
+
+.nav-item.active .nav-link {
+    color: rgb(131, 239, 169) !important;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+    color: #2f26d2; /* Change this to the color you want when hovering */
+}
+
+.dropdown-menu .dropdown-item:hover {
+    color: #c03939; /* Change this to the color you want when hovering */
+}
+/* .dropdown-menu {
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+} */
+.dropdown-menu {
+    background-color: transparent;
+    border: none;
+    margin-top: 0; /* Aligns the submenu vertically with the menu */
+}
+
+.dropdown-menu .dropdown-item {
+    color: #fff; /* Makes the submenu text white */
+    background-color: rgb(42, 72, 36);
+    padding: 15px 150px;
+}
+
+/* .dropdown-menu .dropdown-item:hover,
+.dropdown-menu .dropdown-item:focus {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.5);
+} */
+
+.social-icon {
+    max-width: 80px;  /* Adjust as needed */
+    max-height: 80px; /* Adjust as needed */
+    padding-bottom: 20px;
+    padding-right: 20px;
+}
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.social-icons-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    position: relative; /* Change from absolute to relative */
+    z-index: 1;
+}
+.map {
+    position: relative;
+    top: 10px; /* Adjust as needed */
+    right: 90px;
+    max-width: 160px;  /* Adjust as needed */
+    max-height: 160px;
+}
+#text3 {
+    font-family: Lucida Calligraphy;
+    color: white;
+    text-align: center;
+    text-justify: inter-word;
+    font-size: 20px;
+}
+#text4_contact_name {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: white;
+    text-align: center;
+    text-justify: inter-word;
+    font-size: 30px;
+    text-shadow: -1px -1px 0 #000,  
+                 1px -1px 0 #000,
+                 -1px 1px 0 #000,
+                 1px 1px 0 #000;
+}
+#text5_contact_phone {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: white;
+    text-align: center;
+    text-justify: inter-word;
+    font-size: 20px;
+}
+.bio-text {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: white;
+    text-align: center;
+    text-justify: inter-word;
+    font-size: 15px;
+}
+#bio-title {
+    font-family: Lucida Calligraphy;
+    color: white;
+    text-align: center;
+    text-justify: inter-word;
+    font-size: 22px;
+}
+
+/* @media (min-width: 992px) {
+    .card {
+        max-width: 100px;
+    }
+} */
+
+
+#player {
+    position: relative;
+    width: 300px;
+    height: 200px;
+}
+#volume-control {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
