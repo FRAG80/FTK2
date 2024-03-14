@@ -11,68 +11,75 @@ Home
             <img id="image1" src="../static/img/Corners-with-circles333.gif" alt="Image" class="img-fluid">
         </div> -->
         <div class="col-md-12">
-            <p id="text2">Fra-Tech</p>
-        </div>
-    </div>
-    <div class="d-flex justify-content-center align-items-center vh-100">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="card">
-                    <img src= "{{ url_for('static', filename='img/Viscometer_2019.jpg') }}" class="card-img-top" alt="Card image">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="card">
-                    <!-- Card content -->
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="card">
-                    <!-- Card content -->
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="card">
-                    <!-- Card content -->
-                </div>
-            </div>
+            <p id="text2">Hardware projects (mostly Arduinos)</p>
         </div>
     </div>
 
-    <div class="card">
-        <img src= "{{ url_for('static', filename='img/Viscometer_2019.jpg') }}" class="card-img-top" alt="Card image">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
-          <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-    </div>
-    <div class="card">
-        <div class="embed-responsive embed-responsive-16by9">
-            <video class="embed-responsive-item" src="{{ url_for('static', filename='mp4/VID_20181130_124320172.mp4') }}" controls></video>
-        </div>
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-    </div>
-    <div class="card">
-        <div class="embed-responsive embed-responsive-16by9">
-            <video class="embed-responsive-item" src="{{ url_for('static', filename='mp4/VID_20180314_143600672.mp4') }}" controls></video>
-        </div>
-        <div class="card-body">
-            <h5 class="card-title">Leak testing an high pressure cell</h5>
-            <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
+    <div id="card-container" class="card-container">
+        <!-- Cards will be inserted here -->
     </div>
 </div>
+
+<script>
+    var cards = [
+        {
+            image: "{{ url_for('static', filename='img/HT-controller_2020.jpg') }}",
+            title: "Humidity and Temperature controller with cloud logging, 2020",
+            modalId: "myModal1"
+        },
+        {
+            image: "{{ url_for('static', filename='img/Viscometer_2019.jpg') }}",
+            title: "High pressure viscometer, 2019",
+            modalId: "myModal2"
+        },
+        {
+            image: "{{ url_for('static', filename='img/2T-field sensor.jpg') }}",
+            title: "2T magnetic field sensor, 2020",
+            modalId: "myModal3"
+        },
+        {
+            image: "{{ url_for('static', filename='img/Pipette heater 2021.jpg') }}",
+            title: "Pipette tip heater, 2021",
+            modalId: "myModal4"
+        },
+        {
+            image: "{{ url_for('static', filename='img/Probe station_2008.jpg') }}",
+            title: "Multichannel low-noise probe station, 2008",
+            modalId: "myModal5"
+        },
+        {
+            image: "{{ url_for('static', filename='img/Filling station_2017.jpg') }}",
+            title: "Carbon dioxide dosing station, 2017",
+            modalId: "myModal6"
+        },
+        // More cards 
+    ];
+
+    var cardContainer = document.getElementById('card-container');
+
+    cards.forEach(function(card, index) {
+        var cardHtml = `
+            <div class="card">
+                <img src="${card.image}" class="card-img-top" alt="Card image" data-toggle="modal" data-target="#${card.modalId}">
+                <div class="card-footer">
+                    <h5 class="card-title">${card.title}</h5>
+                </div>
+            </div>
+            <div class="modal fade" id="${card.modalId}">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <img src="${card.image}" class="img-fluid" alt="Full size image">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        cardContainer.innerHTML += cardHtml;
+    });
+</script>
 {% endblock %}

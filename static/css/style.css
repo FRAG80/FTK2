@@ -39,10 +39,49 @@ header {
     text-align: center;
 } */
 
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-gap: 20px;
+}
+
 .card-img-top {
+    /* position: absolute;
+    top: 0;
+    left: 0; */
+    width: auto;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card {
+    position: relative;
     width: 100%;
-    height: auto;
-    object-fit: cover; /* or 'contain' depending on your needs */
+    /* padding-bottom: 75%; Adjust this value to match the aspect ratio of your images */
+    overflow: hidden;
+}
+
+/* .card-body {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+} */
+
+.card-footer {
+    background: transparent;
+    border: none;
+    padding: 6px;
+}
+
+.card-title {
+    font-size: 15px;
+    margin: 0;
+}
+
+.modal-content {
+    background-color: #091e34;
 }
 
 .logo {
