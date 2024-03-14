@@ -1,5 +1,7 @@
 static/img/
 static/wav/
+static/mp3/
+static/mp4
 webenv/
 builds/
 scraps/

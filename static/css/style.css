@@ -3,61 +3,129 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
+    font-family: 'Courier New', Courier, monospace;
 }
+
+body#theremin {
+    background: url("../img/Image_5751.jpg") no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+body#contact {
+    background: url("../img/DSC00595.JPG") no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+body#embedded {
+    background: url("../img/LI1_A1t_1.jpg") no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
 header {
     background: transparent;
 }
+
+/* ul {
+    list-style-position: inside;
+    text-align: center;
+} */
+
+.card-img-top {
+    width: 100%;
+    height: auto;
+    object-fit: cover; /* or 'contain' depending on your needs */
+}
+
 .logo {
     float: left;
     height: 50px;
 }
+
+.logo-text {
+    font-family: 'Courier New', Courier, monospace;
+    color: black;
+    text-align: center;
+    text-justify: inter-word;
+    font-size: 36px;
+    padding-left: 10px;
+    font-weight: bold;
+    text-shadow: -1px -1px 0 whitesmoke,  
+                 1px -1px 0 whitesmoke ,
+                 -1px 1px 0 whitesmoke,
+                 1px 1px 0 whitesmoke;
+}
+
 .hide-on-small {
     display: none;
 }
+
 /* .logo {
     display: block;
     min-height: 30px;
     max-height: 50px;
     width: auto;
 } */
+
 @media screen and (min-width: 768px) {
     .hide-on-small {
         display: block;
     }
 }
-/* @media (max-width: 992px) {
-    .navbar-nav .dropdown-menu {
-        left: auto;
-        right: 0;
+
+nav ul li a {
+    color: white; /* Change this to the color you want for the text */
+    background-color: rgba(167, 186, 205, 0.6); /* Semi-transparent grey */
+    padding: 10px 20px; /* This adds some space around the text */
+    text-decoration: none; /* This removes the underline from the links */
+}
+
+/* Change the color when the mouse hovers over a tab */
+nav ul li a:hover {
+    background-color: rgba(167, 186, 205, 0.8); /* Slightly less transparent grey when hovering */
+}
+
+.navbar-nav .nav-item .nav-link {
+    margin: 0px 2px; /* Adjust as needed */
+}
+
+@media (max-width: 920px) { /* Adjust as needed */
+    .navbar-nav {
+        justify-content: flex-end;
     }
-} */
-#image1 {
-    position: left-center;
-    max-width: 50vw;
+
+    .navbar-nav .nav-item .nav-link {
+        max-width: 200px; /* Adjust as needed */
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
 }
-#navbarNavDropdown {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    color: rgb(202, 82, 82);
-    text-align: center;
-    text-justify: inter-word;
-    font-size: 20px;
-    font-weight: bold;
+
+.navbar-nav .nav-item:first-child .nav-link {
+    border-top-left-radius: 10px;
+    /* border-bottom-left-radius: 10px; */
 }
-#text2 {
-    font-family: 'Courier New', Courier, monospace;
-    color: white;
-    text-align: center;
-    text-justify: inter-word;
-    font-size: 60px;
-    font-weight: bold;
-    text-shadow: -1px -1px 0 #000,  
-                 1px -1px 0 #000,
-                 -1px 1px 0 #000,
-                 1px 1px 0 #000;
+
+.navbar-nav .nav-item:last-child .nav-link {
+    /* border-top-right-radius: 10px; */
+    border-bottom-right-radius: 10px;
+}
+
+.navbar-toggler {
+    background-color: #a7bacd; /* Change this to the color you want */
 }
 
 .nav-item.active .nav-link {
-    color: rgb(131, 239, 169) !important;
+    color: rgb(33, 218, 97) !important;
 }
 
 .navbar-dark .navbar-nav .nav-link:hover {
@@ -95,6 +163,7 @@ header {
     padding-bottom: 20px;
     padding-right: 20px;
 }
+
 .contact-info {
     display: flex;
     flex-direction: column;
@@ -110,6 +179,7 @@ header {
     position: relative; /* Change from absolute to relative */
     z-index: 1;
 }
+
 .map {
     position: relative;
     top: 10px; /* Adjust as needed */
@@ -117,12 +187,48 @@ header {
     max-width: 160px;  /* Adjust as needed */
     max-height: 160px;
 }
+
+#image1 {
+    position: left-center;
+    max-width: 50vw;
+}
+
+#navbarNavDropdown {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: rgb(202, 82, 82);
+    text-align: center;
+    text-justify: inter-word;
+    font-size: 20px;
+    font-weight: bold;
+    text-shadow: -1px -1px 0 #000,  
+                 1px -1px 0 #000,
+                 -1px 1px 0 #000,
+                 1px 1px 0 #000;
+}
+
+#text2 {
+    /* font-family: 'Courier New', Courier, monospace; */
+    color: white;
+    text-align: center;
+    text-justify: inter-word;
+    font-size: 30px;
+    font-weight: bold;
+    text-shadow: -1px -1px 0 #000,  
+                1px -1px 0 #000,
+                -1px 1px 0 #000,
+                1px 1px 0 #000;
+}
+
 #text3 {
-    font-family: Lucida Calligraphy;
+    /* font-family: Lucida Calligraphy; */
     color: white;
     text-align: center;
     text-justify: inter-word;
     font-size: 20px;
+    /* text-shadow: -1px -1px 0 #000,  
+                 1px -1px 0 #000; */
+    text-shadow: -1px 1px 0 #000,
+                 1px 1px 0 #000;
 }
 #text4_contact_name {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -150,16 +256,16 @@ header {
     font-size: 15px;
 }
 #bio-title {
-    font-family: Lucida Calligraphy;
+    /* font-family: Lucida Calligraphy; */
     color: white;
     text-align: center;
     text-justify: inter-word;
     font-size: 22px;
 }
 
-/* @media (min-width: 992px) {
+/* @media (min-width: 900px) {
     .card {
-        max-width: 100px;
+        max-width: 200px;
     }
 } */
 

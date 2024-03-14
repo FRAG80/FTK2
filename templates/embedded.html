@@ -14,5 +14,65 @@ Home
             <p id="text2">Fra-Tech</p>
         </div>
     </div>
+    <div class="d-flex justify-content-center align-items-center vh-100">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <img src= "{{ url_for('static', filename='img/Viscometer_2019.jpg') }}" class="card-img-top" alt="Card image">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <!-- Card content -->
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <!-- Card content -->
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <!-- Card content -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <img src= "{{ url_for('static', filename='img/Viscometer_2019.jpg') }}" class="card-img-top" alt="Card image">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+    </div>
+    <div class="card">
+        <div class="embed-responsive embed-responsive-16by9">
+            <video class="embed-responsive-item" src="{{ url_for('static', filename='mp4/VID_20181130_124320172.mp4') }}" controls></video>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+    </div>
+    <div class="card">
+        <div class="embed-responsive embed-responsive-16by9">
+            <video class="embed-responsive-item" src="{{ url_for('static', filename='mp4/VID_20180314_143600672.mp4') }}" controls></video>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Leak testing an high pressure cell</h5>
+            <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+    </div>
 </div>
 {% endblock %}
