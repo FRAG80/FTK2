@@ -17,6 +17,10 @@ def home():
 def embedded():
     return render_template('embedded.html', current_page='embedded')
 
+@app.route('/materials')
+def materials():
+    return render_template('materials.html', current_page='materials')
+
 @app.route('/audio') ## testing audio samples players on this page
 def audio():
     directory = "static/wav/"  # replace with your actual directory

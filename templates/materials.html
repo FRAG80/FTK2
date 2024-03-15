@@ -1,0 +1,95 @@
+{% extends "index.html" %}
+
+<!-- {% block title %}
+Home
+{% endblock %} -->
+
+{% block content %}
+<div class="container">
+    <div class="row align-items-center">
+        <!-- <div class="col-md-6 hide-on-small">
+            <img id="image1" src="../static/img/Corners-with-circles333.gif" alt="Image" class="img-fluid">
+        </div> -->
+        <div class="col-md-12">
+            <p id="text2">Materials for Physics studies</p>
+        </div>
+    </div>
+
+    <div id="card-container" class="card-container">
+        <!-- Cards will be inserted here -->
+    </div>
+</div>
+
+<script>
+    var cards = [
+        {
+            image: "{{ url_for('static', filename='img/CVT1-WSe2_WP_20140626_002.jpg') }}",
+            title: "Tungsten Selenide grown by CVT, 2014",
+            modalId: "myModal1"
+        },
+        {
+            image: "{{ url_for('static', filename='img/CVT1-WSe2_Image_1745.jpg') }}",
+            title: "Tungsten Selenide single crystal",
+            modalId: "myModal2"
+        },
+        {
+            image: "{{ url_for('static', filename='img/DVT5-bulk.png') }}",
+            title: "Tin (II) Selenide",
+            modalId: "myModal3"
+        },
+        {
+            image: "{{ url_for('static', filename='img/CVT10,11.png') }}",
+            title: "Tungsten Sulfide grown by CVT",
+            modalId: "myModal4"
+        },
+        {
+            image: "{{ url_for('static', filename='img/BP1,2,3.png') }}",
+            title: "Black phosphorous prep (before growth)",
+            modalId: "myModal5"
+        },
+        {
+            image: "{{ url_for('static', filename='img/BP1.png') }}",
+            title: "Black Phosphorous",
+            modalId: "myModal6"
+        },
+        {
+            image: "{{ url_for('static', filename='img/Perov1-rcr2.png') }}",
+            title: "Lead Iodide Perovskite",
+            modalId: "myModal7"
+        },
+        {
+            image: "{{ url_for('static', filename='img/LI1_A1t_1.jpg') }}",
+            title: "Lead Iodide film under the microscope",
+            modalId: "myModal8"
+        },
+        // More cards 
+    ];
+
+    var cardContainer = document.getElementById('card-container');
+
+    cards.forEach(function(card, index) {
+        var cardHtml = `
+            <div class="card">
+                <img src="${card.image}" class="card-img-top" alt="Card image" data-toggle="modal" data-target="#${card.modalId}">
+                <div class="card-footer">
+                    <h5 class="card-title">${card.title}</h5>
+                </div>
+            </div>
+            <div class="modal fade" id="${card.modalId}">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <img src="${card.image}" class="img-fluid" alt="Full size image">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        cardContainer.innerHTML += cardHtml;
+    });
+</script>
+{% endblock %}

@@ -97,11 +97,11 @@ document.getElementById('osc2syncButton').addEventListener('click', function() {
 // Add buttons to increase and decrease detune amount
 document.getElementById('increaseDetune').addEventListener('click', function() {
     oscillator2.detune.value += 1;
-    document.getElementById('detuneAmount').textContent = `Detune: ${oscillator2.detune.value} cents`;
+    document.getElementById('detuneAmount').textContent = `${oscillator2.detune.value} cents`;
 });
 document.getElementById('decreaseDetune').addEventListener('click', function() {
     oscillator2.detune.value -= 1;
-    document.getElementById('detuneAmount').textContent = `Detune: ${oscillator2.detune.value} cents`;
+    document.getElementById('detuneAmount').textContent = `${oscillator2.detune.value} cents`;
 });
 
 

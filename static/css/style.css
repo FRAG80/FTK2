@@ -1,3 +1,13 @@
+a,
+a:link,
+a:visited {
+    color: #425de4; /* Set the color of the email link */
+}
+
+a:hover {
+    color: #15e8b7; /* Set the color of the email link when hovered on */
+}
+
 body {
     background-image: url("../img/DSC00388.JPG");
     background-size: cover;
@@ -50,13 +60,14 @@ header {
     top: 0;
     left: 0; */
     width: auto;
-    height: 100%;
+    height: calc(100% - 30px);
     object-fit: cover;
 }
 
 .card {
     position: relative;
     width: 100%;
+    height: 300px;
     /* padding-bottom: 75%; Adjust this value to match the aspect ratio of your images */
     overflow: hidden;
 }
@@ -72,6 +83,7 @@ header {
 .card-footer {
     background: transparent;
     border: none;
+    height: 30px;
     padding: 6px;
 }
 
@@ -164,7 +176,7 @@ nav ul li a:hover {
 }
 
 .nav-item.active .nav-link {
-    color: rgb(33, 218, 97) !important;
+    color: #15e8b7 !important;
 }
 
 .navbar-dark .navbar-nav .nav-link:hover {
@@ -174,10 +186,7 @@ nav ul li a:hover {
 .dropdown-menu .dropdown-item:hover {
     color: #c03939; /* Change this to the color you want when hovering */
 }
-/* .dropdown-menu {
-    background-color: rgba(0, 0, 0, 0.5);
-    border: none;
-} */
+
 .dropdown-menu {
     background-color: transparent;
     border: none;
@@ -189,12 +198,6 @@ nav ul li a:hover {
     background-color: rgb(42, 72, 36);
     padding: 15px 150px;
 }
-
-/* .dropdown-menu .dropdown-item:hover,
-.dropdown-menu .dropdown-item:focus {
-    color: #fff;
-    background-color: rgba(0, 0, 0, 0.5);
-} */
 
 .social-icon {
     max-width: 80px;  /* Adjust as needed */
@@ -226,6 +229,24 @@ nav ul li a:hover {
     max-width: 160px;  /* Adjust as needed */
     max-height: 160px;
 }
+
+button {
+    border-radius: 12px; /* Round the corners of the buttons */
+    background-color: #5571a4b1; /* Change the color of the buttons */
+    color: white; /* Change the text color of the buttons */
+    padding: 5px 0px; /* Add some padding to the buttons */
+    margin: 4px 0; /* Add some vertical space around the buttons */
+}
+
+#detuneAmount {
+    color: #fff;
+    margin: 10px 0; /* Add some vertical space around the detune amount */
+    text-align: center; /* Center the detune amount */
+}
+
+/* #detuneAmount {
+    color: #fff;
+} */
 
 #image1 {
     position: left-center;
@@ -270,7 +291,7 @@ nav ul li a:hover {
                  1px 1px 0 #000;
 }
 #text4_contact_name {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    /* font-family: Verdana, Geneva, Tahoma, sans-serif; */
     color: white;
     text-align: center;
     text-justify: inter-word;
@@ -280,12 +301,17 @@ nav ul li a:hover {
                  -1px 1px 0 #000,
                  1px 1px 0 #000;
 }
-#text5_contact_phone {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+#text5_email {
+    /* font-family: Verdana, Geneva, Tahoma, sans-serif; */
     color: white;
     text-align: center;
     text-justify: inter-word;
     font-size: 20px;
+    font-weight: bold;
+    text-shadow: -1px -1px 0 #000,  
+                 1px -1px 0 #000,
+                 -1px 1px 0 #000,
+                 1px 1px 0 #000;
 }
 .bio-text {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
