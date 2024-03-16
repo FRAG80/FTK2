@@ -1,0 +1,147 @@
+{% extends "index.html" %}
+
+<!-- {% block title %}
+Home
+{% endblock %} -->
+
+{% block content %}
+<div class="container">
+    <div class="row align-items-center">
+        <div class="col-md-12">
+            <p id="text2">Hardware projects</p>
+        </div>
+    </div>
+
+    <div id="card-container" class="card-container">
+        <!-- Cards will be inserted here -->
+    </div>
+</div>
+
+<script>
+    var cards = [
+        {
+            type: 'image',
+            src: "{{ url_for('static', filename='img/HT-controller_2020.jpg') }}",
+            title: "Humidity and Temperature controller with cloud logging, 2020",
+            modalId: "myModal1"
+        },
+        {
+            type: 'image',
+            src: "{{ url_for('static', filename='img/Viscometer_2019.jpg') }}",
+            title: "High pressure rolling ball viscometer, 2019",
+            modalId: "myModal2"
+        },
+        {
+            type: 'video',
+            src: 'https://www.youtube.com/watch?v=2SKYFgb08X4',
+            title: "Rolling ball viscometer in use",
+            modalId: "myModal10"
+        },
+        {
+            type: 'image',
+            src: "{{ url_for('static', filename='img/2T-field sensor.jpg') }}",
+            title: "2T magnetic field sensor, 2020",
+            modalId: "myModal3"
+        },
+        {
+            type: 'image',
+            src: "{{ url_for('static', filename='img/Pipette heater 2021.jpg') }}",
+            title: "Pipette tip heater, 2021",
+            modalId: "myModal4"
+        },
+        {
+            type: 'image',
+            src: "{{ url_for('static', filename='img/Probe station_2008.jpg') }}",
+            title: "Multichannel low-noise probe station, 2008",
+            modalId: "myModal5"
+        },
+        {
+            type: 'image',
+            src: "{{ url_for('static', filename='img/Filling station_2017.jpg') }}",
+            title: "Carbon dioxide dosing station, 2017",
+            modalId: "myModal6"
+        },
+        {
+            type: 'image',
+            src: "{{ url_for('static', filename='img/Lyra-8.jpg') }}",
+            title: "Lyra-8 custom build, 2020",
+            modalId: "myModal7"
+        },
+        {
+            type: 'image',
+            src: "{{ url_for('static', filename='img/Echem Silicon.jpg') }}",
+            title: "Custom electrochemical cells for Silicon dies",
+            modalId: "myModal8"
+        },
+        {
+            type: 'image',
+            src: "{{ url_for('static', filename='img/Photo-SiH.jpg') }}",
+            title: "Photoreactor for surface chemistry",
+            modalId: "myModal9"
+        },
+        {
+            type: 'video',
+            src: 'https://www.youtube.com/watch?v=JtNI6KwGsZo',
+            title: "Supercritical CO2 crashing, 10 mm cell",
+            modalId: "myModal11"
+        },
+        // More cards  
+    ];
+
+    var cardContainer = document.getElementById('card-container');
+
+    cards.forEach(function(card, index) {
+        var cardHtml = '';
+        if (card.type === 'image') {
+            cardHtml = `
+                <div class="card">
+                    <img src="${card.src}" class="card-img-top" alt="Card image" data-toggle="modal" data-target="#${card.modalId}">
+                    <div class="card-footer">
+                        <h5 class="card-title">${card.title}</h5>
+                    </div>
+                </div>
+                <div class="modal fade" id="${card.modalId}">
+                    <div class="modal-dialog modal-dialog-centered modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <img src="${card.src}" class="img-fluid" alt="Full size image">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        } else if (card.type === 'video') {
+            var videoId = card.src.split('watch?v=')[1]; // Get the ID of the YouTube video
+            var thumbnailUrl = `https://img.youtube.com/vi/${videoId}/0.jpg`; // Get the thumbnail URL of the YouTube video
+            var embedUrl = `https://www.youtube.com/embed/${videoId}`; // Get the embed URL of the YouTube video
+            cardHtml = `
+                <div class="card">
+                    <img src="${thumbnailUrl}" class="card-img-top" alt="Card image" data-toggle="modal" data-target="#${card.modalId}">
+                    <div class="card-footer">
+                        <h5 class="card-title">${card.title}</h5>
+                    </div>
+                </div>
+                <div class="modal fade" id="${card.modalId}" tabindex="-1" role="dialog" aria-labelledby="${card.modalId}Label" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <div class="embed-responsive embed-responsive-16by9">
+                                    <iframe class="embed-responsive-item" src="${embedUrl}" allowfullscreen></iframe>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        cardContainer.innerHTML += cardHtml;
+    });
+</script>
+{% endblock %}

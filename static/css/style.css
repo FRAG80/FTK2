@@ -16,8 +16,8 @@ body {
     font-family: 'Courier New', Courier, monospace;
 }
 
-body#theremin {
-    background: url("../img/Image_5751.jpg") no-repeat center center fixed; 
+body#audio {
+    background: url("../img/Perov1_Image_6283.jpg") no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -32,7 +32,15 @@ body#contact {
     background-size: cover;
 }
 
-body#embedded {
+body#theremin {
+    background: url("../img/Image_5751.jpg") no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+body#hardware {
     background: url("../img/LI1_A1t_1.jpg") no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -42,6 +50,13 @@ body#embedded {
 
 header {
     background: transparent;
+}
+
+#summary {
+    width: 85vw; /* Adjust as needed */
+    overflow: auto; /* Add a scrollbar if the content is too wide */
+    background: rgba(167, 186, 205, 0.6);;
+    border-radius: 10px;
 }
 
 /* ul {
@@ -90,6 +105,12 @@ header {
 .card-title {
     font-size: 15px;
     margin: 0;
+}
+
+.footer {
+    position: absolute;
+    right: 0;
+    bottom: -100;
 }
 
 .modal-content {
@@ -238,6 +259,19 @@ button {
     margin: 4px 0; /* Add some vertical space around the buttons */
 }
 
+#canvas-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100vh; /* Full height of the viewport */
+    background-color: transparent; /* Transparent background */
+}
+
+#canvas {
+    width: 600px; /* Adjust as needed */
+    height: 300px; /* Adjust as needed */
+}
+
 #detuneAmount {
     color: #fff;
     margin: 10px 0; /* Add some vertical space around the detune amount */
@@ -251,6 +285,15 @@ button {
 #image1 {
     position: left-center;
     max-width: 50vw;
+}
+#index {
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+    text-shadow: -1px -1px 0 #000,  
+                 1px -1px 0 #000,
+                 -1px 1px 0 #000,
+                 1px 1px 0 #000;
 }
 
 #navbarNavDropdown {
@@ -282,12 +325,13 @@ button {
 #text3 {
     /* font-family: Lucida Calligraphy; */
     color: white;
-    text-align: center;
+    text-align: left;
     text-justify: inter-word;
     font-size: 20px;
-    /* text-shadow: -1px -1px 0 #000,  
-                 1px -1px 0 #000; */
-    text-shadow: -1px 1px 0 #000,
+    font-weight: bold;
+    text-shadow: -1px -1px 0 #000,  
+                 1px -1px 0 #000,
+                -1px 1px 0 #000,
                  1px 1px 0 #000;
 }
 #text4_contact_name {
@@ -313,6 +357,7 @@ button {
                  -1px 1px 0 #000,
                  1px 1px 0 #000;
 }
+
 .bio-text {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: white;

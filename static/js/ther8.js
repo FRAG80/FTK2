@@ -42,46 +42,66 @@ function createOscillator() {
     const osc = audioCtx.createOscillator();
     osc.type = 'sine';
     osc.connect(convolver);
+    // osc.connect(gainNode);
     return osc;
 }
 
 // listen for clicks
 document.getElementById('osc1Button').addEventListener('click', function() {
-    if (oscillator1) {
+    if (oscillator1 && !oscillator2) {
         oscillator1.stop();
         oscillator1 = null;
         this.style.backgroundColor = ""; // Reset button color
         console.log('Oscillator 1 stopped');
     } else {
+        if (oscillator1) {
+            oscillator1.stop();
+            oscillator1 = null;
+        }
+        if (oscillator2) {
+            oscillator2.stop();
+            oscillator2 = null;
+            document.getElementById('osc2syncButton').style.backgroundColor = ""; // Reset button color
+        }
         oscillator1 = createOscillator();
-        oscillator1.start();
+        oscillator1.start(audioCtx.currentTime);
         this.style.backgroundColor = "green"; // Change button color to green
         console.log('Oscillator 1 started');
     }
 });
 
-document.getElementById('osc2Button').addEventListener('click', function() {
-    if (oscillator2) {
+document.getElementById('osc2syncButton').addEventListener('click', function() {
+    if (oscillator1 && oscillator2) {
+        oscillator1.stop();
         oscillator2.stop();
+        oscillator1 = null;
         oscillator2 = null;
         this.style.backgroundColor = ""; // Reset button color
-        console.log('Oscillator 2 stopped');
+        document.getElementById('osc1Button').style.backgroundColor = ""; // Reset button color
+        console.log('Oscillators stopped');
     } else {
+        if (oscillator1) {
+            oscillator1.stop();
+            oscillator1 = null;
+            document.getElementById('osc1Button').style.backgroundColor = ""; // Reset button color
+        }
+        oscillator1 = createOscillator();
         oscillator2 = createOscillator();
-        oscillator2.start();
+        oscillator1.start(audioCtx.currentTime);
+        oscillator2.start(audioCtx.currentTime);
         this.style.backgroundColor = "green"; // Change button color to green
-        console.log('Oscillator 2 started');
+        console.log('Oscillators started');
     }
 });
 
 // Add buttons to increase and decrease detune amount
 document.getElementById('increaseDetune').addEventListener('click', function() {
     oscillator2.detune.value += 1;
-    document.getElementById('detuneAmount').textContent = `Detune: ${oscillator2.detune.value} cents`;
+    document.getElementById('detuneAmount').textContent = `${oscillator2.detune.value} cents`;
 });
 document.getElementById('decreaseDetune').addEventListener('click', function() {
     oscillator2.detune.value -= 1;
-    document.getElementById('detuneAmount').textContent = `Detune: ${oscillator2.detune.value} cents`;
+    document.getElementById('detuneAmount').textContent = `${oscillator2.detune.value} cents`;
 });
 
 
@@ -110,3 +130,57 @@ function updatePage(e) {
     }
     gainNode.gain.value = ((HEIGHT-CurY)/HEIGHT) * maxVol;
 }
+
+//
+
+// Create an analyser node
+const analyser = audioCtx.createAnalyser();
+
+// Connect the gain node to the analyser
+gainNode.connect(analyser);
+
+// Set up the analyser
+analyser.fftSize = 2048; //256;
+const bufferLength = analyser.frequencyBinCount;
+const dataArray = new Uint8Array(bufferLength);
+
+// Get a reference to the canvas and its context
+const canvas = document.getElementById('canvas');
+const canvasContext = canvas.getContext('2d');
+
+// Function to draw the spectrum
+function draw() {
+  requestAnimationFrame(draw);
+
+  // Get the frequency data
+  analyser.getByteFrequencyData(dataArray);
+
+  // Clear the canvas
+  canvasContext.fillStyle = 'black';
+  canvasContext.fillRect(0, 0, canvas.width, canvas.height);
+
+  // Draw the spectrum
+  const maxFreq = 4000;
+  const maxIndex = Math.round(maxFreq / (audioCtx.sampleRate / 2) * bufferLength); // Calculate the index corresponding to maxFreq
+  const barWidth = (canvas.width / maxIndex); // Adjust the bar width
+  let barHeight;
+  let x = 0;
+
+  for(let i = 0; i < maxIndex; i++) {
+    barHeight = dataArray[i];
+
+    canvasContext.fillStyle = 'blue';
+    canvasContext.fillRect(x, canvas.height - barHeight / 2, barWidth, barHeight / 2);
+
+    // Draw the frequency scale
+    if(i % 10 === 0) {
+        canvasContext.fillStyle = 'white';
+        canvasContext.fillText((i / maxIndex * maxFreq).toFixed(0), x, canvas.height - 2); // + ' Hz'
+    }
+
+    x += barWidth + 1;
+  }
+}
+
+// Call the draw function
+draw();

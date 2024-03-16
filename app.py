@@ -13,9 +13,9 @@ app.config['FREEZER_EXTENSION'] = '.html'
 def home():
     return render_template('home.html')
 
-@app.route('/embedded')
-def embedded():
-    return render_template('embedded.html', current_page='embedded')
+@app.route('/hardware')
+def hardware():
+    return render_template('hardware.html', current_page='hardware')
 
 @app.route('/materials')
 def materials():
