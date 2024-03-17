@@ -5,6 +5,9 @@ const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 // Create a ConvolverNode
 const convolver = audioCtx.createConvolver();
 
+// Create a DelayNode
+const delay = audioCtx.createDelay();
+
 // Load an impulse response
 fetch('../static/wav/IRs/capricorn-ir-1-101345.mp3') //rocksta_copy.wav')
     .then(response => response.arrayBuffer())
@@ -17,11 +20,15 @@ fetch('../static/wav/IRs/capricorn-ir-1-101345.mp3') //rocksta_copy.wav')
     });
 
 // Create a GainNode
-const gainNode = audioCtx.createGain();
+// const gainNode = audioCtx.createGain();
+const reverbGain = audioCtx.createGain();
+const delayGain = audioCtx.createGain();
+const combinedGain = audioCtx.createGain();
 
 // const initialVol = 0.001;
 const initialVol = 0.01;
-gainNode.gain.value = gainNode.gain.minValue = gainNode.gain.maxValue = initialVol;
+reverbGain.gain.value = delayGain.gain.value = 1.0;
+combinedGain.gain.value = initialVol;
 
 // create initial theremin frequency and volume values
 const WIDTH = window.innerWidth;
@@ -47,6 +54,7 @@ function createOscillator() {
 }
 
 // listen for clicks
+//// OSC1 on/off button
 document.getElementById('osc1Button').addEventListener('click', function() {
     if (oscillator1 && !oscillator2) {
         oscillator1.stop();
@@ -70,6 +78,7 @@ document.getElementById('osc1Button').addEventListener('click', function() {
     }
 });
 
+//// OSC1+OSC2 on/off button
 document.getElementById('osc2syncButton').addEventListener('click', function() {
     if (oscillator1 && oscillator2) {
         oscillator1.stop();
@@ -94,7 +103,7 @@ document.getElementById('osc2syncButton').addEventListener('click', function() {
     }
 });
 
-// Add buttons to increase and decrease detune amount
+//// OSC2 detune up/down buttons
 document.getElementById('increaseDetune').addEventListener('click', function() {
     oscillator2.detune.value += 1;
     document.getElementById('detuneAmount').textContent = `${oscillator2.detune.value} cents`;
@@ -104,11 +113,54 @@ document.getElementById('decreaseDetune').addEventListener('click', function() {
     document.getElementById('detuneAmount').textContent = `${oscillator2.detune.value} cents`;
 });
 
+//// Delay on/off button
+document.getElementById('delayButton').addEventListener('click', function() {
+    if (delay.delayTime.value > 0) {
+        delay.delayTime.value = 0;
+        this.textContent = 'Delay';
+        this.style.backgroundColor = ""; // Reset button color
+    } else {
+        delay.delayTime.value = 0.5; // 500 ms delay
+        this.textContent = 'Delay';
+        this.style.backgroundColor = "green"; // Change button color to green
+    }
+});
 
-// Connect the convolver to the dry gain node
-convolver.connect(gainNode);
+//// Tap Tempo button
+let lastTap = Date.now();
+let isButtonActive = false;
+
+document.getElementById('tapTempoButton').addEventListener('mousedown', function() {
+    const now = Date.now();
+    const delayTime = Math.min((now - lastTap) / 1000, 1); // Convert to seconds
+    delay.delayTime.value = delayTime;
+    lastTap = now; // Update the time of the last tap
+    this.style.backgroundColor = "green !important"; // Change button color to green
+    isButtonActive = true;
+});
+
+window.addEventListener('mouseup', function() {
+    if (isButtonActive) {
+        document.getElementById('tapTempoButton').style.backgroundColor = ""; // Reset button color
+        isButtonActive = false;
+    }
+});
+
+// Connect the convolver to the delay node and to its own 'dry' gain
+convolver.connect(delay);
+convolver.connect(reverbGain); // 'dry' gain
+
+// Connect the delay to the gain node   
+delay.connect(delayGain); // 'wet' gain
+
+delayGain.connect(combinedGain);
+reverbGain.connect(combinedGain);
+
 // Connect Gain to Output
-gainNode.connect(audioCtx.destination);
+// gainNode.connect(audioCtx.destination);
+// reverbGain.connect(audioCtx.destination);
+// delayGain.connect(audioCtx.destination);
+combinedGain.connect(audioCtx.destination);
 
 
 //cursor math:
@@ -128,7 +180,10 @@ function updatePage(e) {
     if (oscillator2){
         oscillator2.frequency.value = (CurX/WIDTH) * maxFreq;
     }
-    gainNode.gain.value = ((HEIGHT-CurY)/HEIGHT) * maxVol;
+    // gainNode.gain.value = ((HEIGHT-CurY)/HEIGHT) * maxVol;
+    // reverbGain.gain.value = ((HEIGHT-CurY)/HEIGHT) * maxVol;
+    // delayGain.gain.value = ((HEIGHT-CurY)/HEIGHT) * maxVol;
+    combinedGain.gain.value = ((HEIGHT-CurY)/HEIGHT) * maxVol;
 }
 
 //
@@ -137,8 +192,10 @@ function updatePage(e) {
 const analyser = audioCtx.createAnalyser();
 
 // Connect the gain node to the analyser
-gainNode.connect(analyser);
-
+// gainNode.connect(analyser);
+// reverbGain.connect(analyser);
+// delayGain.connect(analyser);
+combinedGain.connect(analyser)
 // Set up the analyser
 analyser.fftSize = 2048; //256;
 const bufferLength = analyser.frequencyBinCount;
