@@ -203,7 +203,21 @@ const dataArray = new Uint8Array(bufferLength);
 
 // Get a reference to the canvas and its context
 const canvas = document.getElementById('canvas');
+canvas.width = canvas.offsetWidth; //600; // Adjust as needed
+canvas.height = canvas.offsetHeight; //300; // Adjust as needed
 const canvasContext = canvas.getContext('2d');
+
+// Get a reference to the background-canvas and its context
+var backgroundCanvas = document.getElementById('background-canvas');
+backgroundCanvas.width = canvas.offsetWidth; //600; // Adjust as needed
+backgroundCanvas.height = canvas.offsetHeight; //300; // Adjust as needed
+var backgroundContext = backgroundCanvas.getContext('2d');
+
+
+
+// Draw the semi-transparent black background on the second canvas
+backgroundContext.fillStyle = 'rgba(0,0,0,0.5)';
+backgroundContext.fillRect(0, 0, backgroundCanvas.width, backgroundCanvas.height);
 
 // Function to draw the spectrum
 function draw() {
@@ -212,9 +226,8 @@ function draw() {
   // Get the frequency data
   analyser.getByteFrequencyData(dataArray);
 
-  // Clear the canvas
-  canvasContext.fillStyle = 'black';
-  canvasContext.fillRect(0, 0, canvas.width, canvas.height);
+// Clear the canvas, but keep the semi-transparent black background
+  canvasContext.clearRect(0, 0, canvas.width, canvas.height );
 
   // Draw the spectrum
   const maxFreq = 4000;

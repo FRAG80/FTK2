@@ -14,7 +14,11 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed;
     font-family: 'Courier New', Courier, monospace;
+    /* background-color: transparent; */
 }
+/* div {
+    background-color: transparent;
+} */
 
 body#audio {
     background: url("../img/Perov1_Image_6283.jpg") no-repeat center center fixed; 
@@ -264,13 +268,24 @@ button {
     justify-content: center;
     align-items: flex-start;
     height: 100vh; /* Full height of the viewport */
-    background-color: transparent; /* Transparent background */
+    /* background-color: transparent; */
+    position: relative;
 }
 
-#canvas {
+#background-canvas, #canvas {
+    position: absolute;
     width: 600px; /* Adjust as needed */
     height: 300px; /* Adjust as needed */
+    /* background-color: transparent; */
 }
+
+#background-canvas {
+    z-index: 1;
+  }
+  
+  #canvas {
+    z-index: 2;
+  }
 
 #detuneAmount {
     color: #fff;
