@@ -17,6 +17,11 @@ Home
     </div>
 </div>
 
+<footer class="footer">
+    <a id="counter-page" href="https://info.flagcounter.com/poS1"><img src="https://s01.flagcounter.com/mini/poS1/bg_E3E3E3/txt_000000/border_237539/flags_0/" alt="Flag Counter" border="0"></a>
+    <a id="counter-site" href="https://info.flagcounter.com/poS1"><img src="https://s01.flagcounter.com/mini/poS1/bg_E3E3E3/txt_000000/border_237539/flags_0/" alt="Flag Counter" border="0"></a>
+</footer>
+
 <script>
     var cards = [
         {
@@ -120,6 +125,7 @@ Home
             cardHtml = `
                 <div class="card">
                     <img src="${thumbnailUrl}" class="card-img-top" alt="Card image" data-toggle="modal" data-target="#${card.modalId}">
+                    <div class="video-icon"></div>
                     <div class="card-footer">
                         <h5 class="card-title">${card.title}</h5>
                     </div>
@@ -143,5 +149,19 @@ Home
 
         cardContainer.innerHTML += cardHtml;
     });
+
+    // Select all modals
+var modals = document.querySelectorAll('.modal');
+
+// Add event listener to each modal
+modals.forEach(function(modal) {
+    $(modal).on('hidden.bs.modal', function () {
+    // Find the iframe within the modal
+    var iframe = modal.querySelector('iframe');
+
+    // Reset the iframe's src to stop the video
+    iframe.src = iframe.src;
+    });
+});
 </script>
 {% endblock %}

@@ -14,18 +14,23 @@ Home
     <canvas id="canvas"></canvas>
 </div>
 
-<div style="display: grid; grid-template-columns: repeat(3, auto); justify-content: end; align-content: end; gap: 10px; position: absolute; right: 20px; bottom: 20px;">
+<div id="buttons-grid">
     <div></div>
     <button id="delayButton">Delay</button>
     <button id='increaseDetune'>Detune UP</button>
     <button id='osc1Button'>1 Oscillator</button>
-    <button id='osc2syncButton'>2 Oscillators</button>
+    <div id="averageTapTime">0 BPM</div>
     <div id="detuneAmount">0 cents</div>
-    <div></div>
-    <button id="tapTempoButton">Tap</button>
+    <button id='osc2syncButton'>2 Oscillators</button>
+    <button id="tapTempoButton" class="tap-button">Tap</button>
     <button id="decreaseDetune">Detune DOWN</button>
 </div>
 
-<script src="../static/js/ther9.js">
+<footer class="footer">
+    <a id="counter-page" href="https://info.flagcounter.com/poS1"><img src="https://s01.flagcounter.com/mini/poS1/bg_E3E3E3/txt_000000/border_237539/flags_0/" alt="Flag Counter" border="0"></a>
+    <a id="counter-site" href="https://info.flagcounter.com/poS1"><img src="https://s01.flagcounter.com/mini/poS1/bg_E3E3E3/txt_000000/border_237539/flags_0/" alt="Flag Counter" border="0"></a>
+</footer>
+
+<script src="../static/js/ther11.js">
 </script>
 {% endblock %}

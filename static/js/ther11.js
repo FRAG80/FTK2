@@ -23,11 +23,13 @@ fetch('../static/wav/IRs/capricorn-ir-1-101345.mp3') //rocksta_copy.wav')
 // const gainNode = audioCtx.createGain();
 const reverbGain = audioCtx.createGain();
 const delayGain = audioCtx.createGain();
+const feedbackGain = audioCtx.createGain();
 const combinedGain = audioCtx.createGain();
 
 // const initialVol = 0.001;
 const initialVol = 0.01;
 reverbGain.gain.value = delayGain.gain.value = 1.0;
+feedbackGain.gain.value = 0.4;
 combinedGain.gain.value = initialVol;
 
 // create initial theremin frequency and volume values
@@ -126,22 +128,44 @@ document.getElementById('delayButton').addEventListener('click', function() {
     }
 });
 
-//// Tap Tempo button
+//Tap Tempo moving average and light effect
 let lastTap = Date.now();
 let isButtonActive = false;
+let tapTimes = [];
 
 document.getElementById('tapTempoButton').addEventListener('mousedown', function() {
     const now = Date.now();
-    const delayTime = Math.min((now - lastTap) / 1000, 1); // Convert to seconds
-    delay.delayTime.value = delayTime;
+    tapTimes.push(now - lastTap); // Store the time difference between taps
     lastTap = now; // Update the time of the last tap
-    this.style.backgroundColor = "green !important"; // Change button color to green
+
+    if (tapTimes.length >= 3) { // Only update the tempo after at least 3 taps
+        const averageDelayTime = tapTimes.reduce((a, b) => a + b) / tapTimes.length; // Calculate the average time difference between taps
+        delay.delayTime.value = Math.min(averageDelayTime / 1000, 1); // Convert to seconds and update the delay time
+
+        // Convert the average tap time to BPM
+        const averageBPM = 60 / (averageDelayTime / 1000);
+        
+        // Update the average tap time display
+        document.getElementById('averageTapTime').textContent = averageBPM.toFixed(1) + ' BPM';
+    }
+
+    if (tapTimes.length > 3) { // Keep a moving average for more than 3 taps
+        tapTimes.shift(); // Remove the oldest tap time
+    }
+
+    this.classList.add('active'); // Show the light effect
+    console.log(this.classList); // Log the class list of the button
     isButtonActive = true;
+
+    // Remove the 'active' class after 0.3 seconds
+    setTimeout(() => {
+        this.classList.remove('active');
+    }, 300);
 });
 
 window.addEventListener('mouseup', function() {
     if (isButtonActive) {
-        document.getElementById('tapTempoButton').style.backgroundColor = ""; // Reset button color
+        document.getElementById('tapTempoButton').classList.remove('active'); // Hide the light effect
         isButtonActive = false;
     }
 });
@@ -149,6 +173,10 @@ window.addEventListener('mouseup', function() {
 // Connect the convolver to the delay node and to its own 'dry' gain
 convolver.connect(delay);
 convolver.connect(reverbGain); // 'dry' gain
+
+// Connect the delay to the feedback loop
+delay.connect(feedbackGain);
+feedbackGain.connect(delay);
 
 // Connect the delay to the gain node   
 delay.connect(delayGain); // 'wet' gain
@@ -183,7 +211,7 @@ function updatePage(e) {
     // gainNode.gain.value = ((HEIGHT-CurY)/HEIGHT) * maxVol;
     // reverbGain.gain.value = ((HEIGHT-CurY)/HEIGHT) * maxVol;
     // delayGain.gain.value = ((HEIGHT-CurY)/HEIGHT) * maxVol;
-    combinedGain.gain.value = ((HEIGHT-CurY)/HEIGHT) * maxVol;
+    combinedGain.gain.value = ((HEIGHT-CurY)/HEIGHT) * maxVol + 0.02;
 }
 
 //

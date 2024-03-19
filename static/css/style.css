@@ -91,13 +91,17 @@ header {
     overflow: hidden;
 }
 
-/* .card-body {
+.video-icon {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1;
-} */
+    top: 75%;
+    left: 85%;
+    transform: translate(-50%, -50%);
+    width: 50px; /* Adjust as needed */
+    height: 50px; /* Adjust as needed */
+    background: url('../img/video_youtube_icon.png') no-repeat center center;
+    background-size: contain;
+    pointer-events: none;
+  }
 
 .card-footer {
     background: transparent;
@@ -113,8 +117,24 @@ header {
 
 .footer {
     position: absolute;
-    right: 0;
-    bottom: -100;
+    right: 30px;
+    padding-bottom:20px;
+    color: white;
+    text-align: right;
+    text-justify: inter-word;
+    font-size: 14px;
+    font-weight: bold;
+    text-shadow: -1px -1px 0 #000,  
+                 1px -1px 0 #000,
+                -1px 1px 0 #000,
+                 1px 1px 0 #000;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+#counter-page, #counter-site {
+    margin: 5px 5px 10px;
 }
 
 .modal-content {
@@ -255,12 +275,54 @@ nav ul li a:hover {
     max-height: 160px;
 }
 
+#buttons-grid {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    justify-content: end;
+    align-content: end;
+    gap: 10px;
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    z-index: 3;
+}
+
 button {
     border-radius: 12px; /* Round the corners of the buttons */
     background-color: #5571a4b1; /* Change the color of the buttons */
     color: white; /* Change the text color of the buttons */
     padding: 5px 0px; /* Add some padding to the buttons */
     margin: 4px 0; /* Add some vertical space around the buttons */
+}
+
+#averageTapTime {
+    color: white;
+    position: relative;
+    top: 10px;
+    /* left: 0px; */
+    width: 100px; /* Adjust this value to the width you want */
+    text-align: center;
+}
+.tap-button {
+    position: relative;
+/* Add your existing styles for the button */
+}
+
+/* pseudo-element */
+.tap-button::after {
+content: "";
+position: absolute;
+top: 22%;
+left: 15%;
+width: 20px;
+height: 20px;
+background: greenyellow;
+opacity: 0;
+/* transition: opacity 0.3s ease-in-out; */
+}
+
+.tap-button.active::after {
+    opacity: 1;
 }
 
 #canvas-container {
@@ -349,6 +411,7 @@ button {
                 -1px 1px 0 #000,
                  1px 1px 0 #000;
 }
+
 #text4_contact_name {
     /* font-family: Verdana, Geneva, Tahoma, sans-serif; */
     color: white;
